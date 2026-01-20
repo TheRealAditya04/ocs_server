@@ -14,11 +14,15 @@ import cors from "cors";
 
 const app = express();
 
-
-
 app.use(cors({
-  origin: "*"
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
+
+app.options("*", cors());
+
+app.use(express.json());
 
 
 pool.query("SELECT 1")
