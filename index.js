@@ -13,12 +13,12 @@ import recruiterRoutes from "./routes/recruiter.js";
 
 
 const app = express();
+
+
+
 app.use(cors({
-  origin: "*",
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"]
+  origin: "*"
 }));
-app.options("*", cors());
 
 
 pool.query("SELECT 1")
@@ -41,5 +41,6 @@ app.use("/api", adminRoutes);
 app.use("/api", recruiterRoutes);
 
 const PORT = process.env.PORT || 3000;
-
-export default app;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
