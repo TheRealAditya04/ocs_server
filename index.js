@@ -9,21 +9,28 @@ import applicationRoutes from "./routes/applications.js";
 import { pool } from "./db.js";
 import adminRoutes from "./routes/admin.js";
 import recruiterRoutes from "./routes/recruiter.js";
+import cors from "cors";
+
+
+const app = express();
 
 
 
-
+app.use(cors({
+  origin: "*"
+}));
 
 
 pool.query("SELECT 1")
-  .then(() => console.log("✅ Database connected"))
-  .catch(err => console.error("❌ DB connection failed", err));
+  .then(() => console.log(" Database connected"))
+  .catch(err => console.error(" DB connection failed", err));
 
 
 dotenv.config();
 
-const app = express();
-app.use(cors());
+
+
+
 app.use(express.json());
 
 app.use("/api", authRoutes);
