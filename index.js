@@ -9,20 +9,16 @@ import applicationRoutes from "./routes/applications.js";
 import { pool } from "./db.js";
 import adminRoutes from "./routes/admin.js";
 import recruiterRoutes from "./routes/recruiter.js";
-import cors from "cors";
+
 
 
 const app = express();
 
+
+
 app.use(cors({
-  origin: "*",
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"]
+  origin: "*"
 }));
-
-app.options("*", cors());
-
-app.use(express.json());
 
 
 pool.query("SELECT 1")
